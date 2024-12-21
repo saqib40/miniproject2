@@ -9,9 +9,9 @@ import AllMachines from './pages/allMachines.js';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles'
 import { createTheme } from '@mui/material'
+import { WebSocketProvider } from './contexts/WebSocketContext';  // Add this import
 
 const theme = createTheme({
-  // You can customize your theme here
   palette: {
     primary: {
       main: '#1976d2',
@@ -25,14 +25,16 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-      <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/existing-machine" element={<ExistingMachine />} />
-          <Route path="/new-machine" element={<NewMachine />} />
-          <Route path="/all-machines" element={<AllMachines />} />
-        </Routes>
+        <WebSocketProvider>  {/* Add this wrapper */}
+          <Routes>
+            <Route path="/" element={<App />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/existing-machine" element={<ExistingMachine />} />
+            <Route path="/new-machine" element={<NewMachine />} />
+            <Route path="/all-machines" element={<AllMachines />} />
+          </Routes>
+        </WebSocketProvider>
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>,
