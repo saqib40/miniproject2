@@ -14,10 +14,11 @@ const setupWebSocketServer = (server) => {
         ws.on('message', async (message) => {
             try {
                 const data = JSON.parse(message);
-                
+
                 switch (data.type) {
                     case 'register':
                         machineId = data.machineId;
+                        ws.machineId = machineId; // Store machineId in the ws object
                         await updateMachineStatus(machineId, data.status || 'locked');
                         ws.send(JSON.stringify({ type: 'registration_success', message: 'Machine registered successfully' }));
                         break;

@@ -15,7 +15,6 @@ const sendCommandToMachine = async (machineId, command) => {
         throw new Error('WebSocket server not initialized');
     }
     
-    // Debug information
     console.log('Attempting to send command to machine:', machineId);
     console.log('Command:', command);
     console.log('Connected clients:', Array.from(wss.clients).map(client => ({
@@ -60,6 +59,8 @@ async function existing(req, res) {
             });
         }
 
+        console.log('Machine found:', machine);
+
         if (!await bcrypt.compare(password, machine.password)) {
             console.log('Invalid password for machine:', machineId);
             return res.status(401).json({
@@ -67,6 +68,8 @@ async function existing(req, res) {
                 message: 'Incorrect password'
             });
         }
+
+        console.log('Password is correct for machine:', machineId);
 
         try {
             await sendCommandToMachine(machine._id.toString(), command);
