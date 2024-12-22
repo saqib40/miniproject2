@@ -2,11 +2,17 @@ const express = require("express");
 const http = require('http');
 const routes = require("./routes/routes");
 const { setupWebSocketServer } = require('./config/ws');
+const path = require('path');
 
 const app = express();
 require("dotenv").config();
 const PORT = process.env.PORT || 4000;
 
+const cors = require("cors");
+app.use(cors());
+app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+app.use(express.json());
 // Connect to database
 require("./config/db").connect();
 

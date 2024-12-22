@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.c": "c",
+        "esp_event.h": "c"
+    }
+}

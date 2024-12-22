@@ -1,3 +1,4 @@
+// protected/all-machines.js
 const userModel = require("../models/user");
 
 async function all(req,res,next) {

@@ -9,7 +9,7 @@ import AllMachines from './pages/allMachines.js';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles'
 import { createTheme } from '@mui/material'
-import { WebSocketProvider } from './contexts/WebSocketContext';  // Add this import
+import { WebSocketProvider } from './contexts/WebSocketContext.js';
 
 const theme = createTheme({
   palette: {
@@ -30,7 +30,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path="/" element={<App />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/existing-machine" element={<ExistingMachine />} />
+            <Route path="/existing-machine/:machineId" element={<ExistingMachine />} />
             <Route path="/new-machine" element={<NewMachine />} />
             <Route path="/all-machines" element={<AllMachines />} />
           </Routes>
