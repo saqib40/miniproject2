@@ -14,6 +14,11 @@ export const WebSocketProvider = ({ children }) => {
         ws.onopen = () => {
             console.log('Connected to WebSocket server');
             setIsConnected(true);
+            // Register as a client
+            ws.send(JSON.stringify({
+                type: 'register',
+                role: 'client'
+            }));
             // Log the current machine statuses
             console.log('Current machine statuses:', machineStatuses);
         };

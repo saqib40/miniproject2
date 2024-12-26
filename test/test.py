@@ -25,7 +25,13 @@ class ESP32DeviceSimulator:
             message['machineId'] = self.machine_id
         await websocket.send(json.dumps(message))
         self.logger.info(f"Sent: {json.dumps(message)}")
-
+    
+    async def handle_connection_closed(self):
+        """Handle connection closure"""
+        self.connected = False
+        self.logger.info("Connection closed, status set to offline")
+        # Note: The server will handle setting the status to offline
+    
     async def send_heartbeat(self, websocket):
         """Replicate the ESP32's heartbeat task"""
         while self.connected:
@@ -79,11 +85,12 @@ class ESP32DeviceSimulator:
                     self.logger.info(f"Connected to {self.uri}")
                     self.connected = True
 
-                    # Send registration message with machineId
+                    # Send registration message with role and machineId
                     await self.send_message(websocket, {
                         "type": "register",
+                        "role": "machine",  # Identify as a machine
                         "machineId": self.machine_id,
-                        "status": "locked" if self.lock_state else "unlocked"
+                        "status": "locked"  # Always start in locked state
                     })
                     self.logger.info(f"Registration sent for machine ID: {self.machine_id}")
 
@@ -91,20 +98,18 @@ class ESP32DeviceSimulator:
                     heartbeat_task = asyncio.create_task(self.send_heartbeat(websocket))
 
                     try:
-                        # Main message handling loop
                         async for message in websocket:
                             await self.handle_message(websocket, message)
                     except websockets.exceptions.ConnectionClosed:
-                        self.logger.warning("Connection closed")
+                        await self.handle_connection_closed()
                     finally:
-                        self.connected = False
                         heartbeat_task.cancel()
                         
             except Exception as e:
                 self.logger.error(f"Connection error: {str(e)}")
-                self.connected = False
+                await self.handle_connection_closed()
             
-            # Reconnection delay (similar to ESP32's reconnect_timeout_ms)
+            # Reconnection delay
             self.logger.info("Attempting to reconnect in 10 seconds...")
             await asyncio.sleep(10)
 
