@@ -115,6 +115,8 @@ class ESP32DeviceSimulator:
 
 async def main():
     # Configuration (same as ESP32 defines)
+    # IP address subject to change depending on which n/w we are connected to
+    # reliable is localhost
     WS_URI = "ws://localhost:4000"
     MACHINE_ID = "676697a3332458612824dca2"     # Machine ID for HOME
 

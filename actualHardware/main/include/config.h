@@ -3,8 +3,8 @@
 
 #define WIFI_SSID      "saqibLovesECE"
 #define WIFI_PASS      "123okok123"
-#define WS_URI         "ws://localhost:4000"
-#define MACHINE_ID     "Istanbul"
+#define WS_URI         "ws://192.168.43.243:4000" // that's the IP address
+#define MACHINE_ID     "676697a3332458612824dca2"
 
 // Hardware pins
 #define SERVO_PIN      18 
