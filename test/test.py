@@ -117,8 +117,8 @@ async def main():
     # Configuration (same as ESP32 defines)
     # IP address subject to change depending on which n/w we are connected to
     # reliable is localhost
-    WS_URI = "ws://localhost:4000"
-    MACHINE_ID = "676697a3332458612824dca2"     # Machine ID for HOME
+    WS_URI = "ws://192.168.43.243:4000"
+    MACHINE_ID = "67680b7a26568d040e6b24e1"     # Machine ID for school
 
     simulator = ESP32DeviceSimulator(WS_URI, MACHINE_ID)
     await simulator.connect()

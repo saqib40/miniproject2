@@ -2,3 +2,5 @@ frontend/node_modules
 backend/node_modules
 actualHardware/build
 actualHardware/managed_components
+testHardware/build
+testHardware/managed_components
