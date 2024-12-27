@@ -1,4 +1,4 @@
-#  MiniProject2 - Remote Controlled Lock System Using Web Technologies and ESP32
+#  MiniProject2 - Remote Controlled Lock System Using WebSockets and ESP32
 Welcome to the **Mini-Project2**!
 This project is for managing, monitoring, and controlling machines over WebSockets. Whether you want to lock, unlock, or just keep an eye on your machines.
 
