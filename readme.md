@@ -1,54 +1,91 @@
-#  MiniProject2 - Remote Controlled Lock System Using WebSockets and ESP32
-Welcome to the **Mini-Project2**!
-This project is for managing, monitoring, and controlling machines over WebSockets. Whether you want to lock, unlock, or just keep an eye on your machines.
+# 🔐 Remote Controlled Lock System
+## WebSocket-based Machine Control using ESP32
 
-##  Features
-- **Real-Time Control:** Send commands to your machines in real-time. 
-- **Status Updates:** Get instant updates on the status of your machines. 
-- **Heartbeat Monitoring:** Ensure your machines are alive and kicking!
+A real-time management and monitoring of remote-controlled locks using WebSocket technology. Whether you want to lock, unlock, or just keep an eye on your machines.
 
-## Installation
+## ✨ Key Features
 
-To make this project work
+**Real-Time Control & Monitoring**
+- Instant command transmission to connected machines
+- Live status updates from all connected devices
+- Continuous heartbeat monitoring for reliable connection status
 
-- **Create a LAN (Local Area Network):** 
-Can be created easily by turning on the hotspot on any machine, and connect as many machines as you want.
+**Secure & Scalable**
+- Local network deployment for enhanced security
+- Support for multiple concurrent device connections
+- MongoDB-based persistent storage for device management
 
-- **Clone this project:** 
-Clone and get your backend and frontend running, make sure you have MongoDB running.
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js and npm installed
+- Python 3.x
+- MongoDB running locally
+- ESP32 development environment (optional for hardware implementation)
+
+### Network Setup
+1. Create a Local Area Network (LAN):
+   - Enable hotspot on any device
+   - Connect all target devices to this network
+
+### Installation Steps
+
+1. Clone the repository:
 ```bash
-  git clone saqib40/miniproject2
-```
-For backend
-```bash
-  cd miniproject2/backend
-  npm install
-  npm run dev
-```
-For frontend
-```bash
-  cd miniproject2/frontend
-  npm install
-  npm start
-```
-On the device where you cloned the project you gotta retrieve it's IP address (for linux/unix system)
-```bash
-  ipconfig getifaddr en0
-```
-
-- **Share the python file:**
-From the *test* directory share the *test.py* with as many devices as you have kept in the LAN, you gotta change the *WS_URI* according to your IP address and *MACHINE_ID* after creating a bunch of machines(can be done easily frontend and MACHINE_IDs from the database), to simulate them. To get python files working
-```bash
-  pip install websockets
-  python test.py
+git clone https://github.com/saqib40/miniproject2
 ```
 
-- **Now Test:**
-Now you can easily test the locking/unlocking of any lock by interacting with the frontend.
+2. Launch the Backend:
+```bash
+cd miniproject2/backend
+npm install
+npm run dev
+```
 
-## Acknowledgements
-- [ESP -IDF](https://github.com/espressif/esp-idf)
+3. Start the Frontend:
+```bash
+cd miniproject2/frontend
+npm install
+npm start
+```
 
-## Authors
-- Saqib Hussain Dar
-- Rohit Y Patil
+4. Get your host machine's IP address:
+- For Linux/Unix systems:
+```bash
+ipconfig getifaddr en0
+```
+
+### Device Configuration
+
+1. Set up test devices:
+- Navigate to the `test` directory
+- Share `test.py` with each device in your LAN
+- Configure each device:
+  - Update `WS_URI` with your host IP address
+  - Set unique `MACHINE_ID` for each device (create via frontend)
+
+2. Install Python dependencies and run:
+```bash
+pip install websockets
+python test.py
+```
+
+## 🧪 Testing
+
+1. Access the frontend interface
+2. Create new machine entries
+3. Test lock/unlock commands
+4. Monitor real-time status updates
+
+## 📚 Resources
+
+- [ESP-IDF Documentation](https://github.com/espressif/esp-idf)
+- [WebSocket Protocol](https://www.youtube.com/playlist?list=PLYxzS__5yYQnRizvwNYWwzFjd9J4ni_Ga)
+
+## 👥 Contributors
+
+- **Saqib Hussain Dar**
+- **Rohit Y Patil**
+
+
+Made with ❤️ for secure, real-time machine control
